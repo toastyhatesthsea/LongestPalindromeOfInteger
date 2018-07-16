@@ -5,12 +5,31 @@ public class Palindrome
 
     public boolean isPalinHelper(int x, int digits)
     {
+        if (digits <= 1)
+        {
+            return true;
+        }
+        else
+        {
+            int divider = (int) (Math.pow(10, digits - 1));
+            int firstDigit = x / divider;
+            int lastDigit = x % 10;
 
+            if (firstDigit != lastDigit)
+            {
+                return false;
+            }
+            else
+            {
+                x = (x - (divider * firstDigit));
+                return isPalinHelper(x / 10, digits - 2);
+            }
+        }
     }
 
     public boolean isPalindrome(int x)
     {
-        if (x < 1)
+        if (x < 0 || x == 0)
         {
             return false;
         } else if (x < 10)
@@ -20,13 +39,8 @@ public class Palindrome
         else
         {
             int amountOfDigits = numOfDigits(x);
-            int lastDigit = x % 10;
-            int divided = x / 10;
-            isPalindrome(divided);
+            return isPalinHelper(x, amountOfDigits);
         }
-
-        return true;
-
     }
 
     public int numOfDigits(int x)
@@ -50,6 +64,6 @@ class PalinTesters
     {
         Palindrome palin = new Palindrome();
 
-        int blah = palin.numOfDigits(93898);
+        boolean blah = palin.isPalindrome(1321);
     }
 }
