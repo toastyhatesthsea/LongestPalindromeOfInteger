@@ -29,14 +29,16 @@ public class Palindrome
 
     public boolean isPalindrome(int x)
     {
-        if (x < 0 || x == 0)
+        if (x < 0)
         {
             return false;
+        } else if (x == 0)
+        {
+            return true;
         } else if (x < 10)
         {
             return true;
-        }
-        else
+        } else
         {
             int amountOfDigits = numOfDigits(x);
             return isPalinHelper(x, amountOfDigits);
