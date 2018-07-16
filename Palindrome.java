@@ -3,6 +3,11 @@ package Palin;
 public class Palindrome
 {
 
+    public boolean isPalinHelper(int x, int digits)
+    {
+
+    }
+
     public boolean isPalindrome(int x)
     {
         if (x < 1)
@@ -14,11 +19,26 @@ public class Palindrome
         }
         else
         {
-            int firstDigit = x % 10;
+            int amountOfDigits = numOfDigits(x);
+            int lastDigit = x % 10;
+            int divided = x / 10;
+            isPalindrome(divided);
         }
 
         return true;
 
+    }
+
+    public int numOfDigits(int x)
+    {
+        if (x < 10 && x > 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 1 + numOfDigits(x / 10);
+        }
     }
 
 
@@ -30,6 +50,6 @@ class PalinTesters
     {
         Palindrome palin = new Palindrome();
 
-        palin.isPalindrome(121);
+        int blah = palin.numOfDigits(93898);
     }
 }
